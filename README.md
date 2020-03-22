@@ -198,9 +198,7 @@ For debugging the Spring boot app as Java application i.e. go to Debug→ Debug 
 
 Or, if you use IntelliJ IDEA, you can do a right click in Main method of `AlexaSkillAppStarter` class:
 
-  ![Full-width image](/assets/img/blog/tutorials/alexa-springboot/debug.png){:.lead data-width="800" data-height="100"}
-Debugging in IntelliJ IDEA
-  {:.figure}
+![image](https://xavidop.github.io/assets/img/blog/tutorials/alexa-springboot/debug.png)
 
 After executing the main class in debug mode, you can send Alexa POST requests to http://localhost:8080/alexa and debug the Skill.
 
@@ -264,9 +262,7 @@ When ngrok is running, it listens on the same port that you’re local web serve
 
 From there, it’s a simple step to get it to listen to your web server. Say you’re running your local web server on port 8080. In terminal, you’d type in: `ngrok http 8080`. This starts ngrok listening on port 8080 and creates the secure tunnel:
 
-  ![Full-width image](/assets/img/blog/tutorials/alexa-springboot/tunnel.png){:.lead data-width="800" data-height="100"}
-ngrok tunnel
-  {:.figure}
+![image](https://xavidop.github.io/assets/img/blog/tutorials/alexa-springboot/tunnel.png)
 
 So now you have to go to [Alexa Developer console](https://developer.amazon.com/alexa/console/ask), go to your skill > endpoints > https, add the https url generated above followed by /alexa. Eg: https://fe8ee91c.ngrok.io/alexa.
 
