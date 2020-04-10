@@ -45,7 +45,7 @@ These are the main folders and files of this project:
 * **configuration**: this folder has the `WebConfig` class which will register the Alexa Http Servlet.
 * **handlers**: all the Alexa handlers. They will be process all Alexa requests.
 * **properties**: here you can find the `PropertiesUtils` class that read Spring `application.propeties` file.
-* **intercetpors**: loggers and localization interceptors.
+* **interceptors**: loggers and localization interceptors.
 * **localization**: Manager that will manage i18n.
 * **servlet**: the entry point of POST Requests is here. This is the `AlexaServlet`.
 * **resources**: Alexa, Spring and Log4j2 configurations.
