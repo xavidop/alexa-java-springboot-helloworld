@@ -29,10 +29,13 @@ Find below the structure of this project:
   │        │           └───alexa
   │        │               ├───configuration
   │        │               ├───handlers
+  │        │               ├───interceptors
+  │        │               ├───localization
   │        │               ├───properties
   │        │               └───servlet
   │        │
   │        └───resources
+  │                └───locales
   │                application.properties
   │                log4j2.xml
   └── pom.xml
@@ -42,6 +45,8 @@ These are the main folders and files of this project:
 * **configuration**: this folder has the `WebConfig` class which will register the Alexa Http Servlet.
 * **handlers**: all the Alexa handlers. They will be process all Alexa requests.
 * **properties**: here you can find the `PropertiesUtils` class that read Spring `application.propeties` file.
+* **intercetpors**: loggers and localization interceptors.
+* **localization**: Manager that will manage i18n.
 * **servlet**: the entry point of POST Requests is here. This is the `AlexaServlet`.
 * **resources**: Alexa, Spring and Log4j2 configurations.
 * **pom.xml**: dependencies of this project.
@@ -113,26 +118,33 @@ Our `AlexaServlet` class, located in the `servlet` folder, extends `SkillServlet
 This is how this class looks like:
 
 ```java
-  public class AlexaServlet extends SkillServlet {
-
-      public AlexaServlet() {
-          super(getSkill());
-      }
-
-      private static Skill getSkill() {
-          return Skills.standard()
-                  .addRequestHandlers(
-                          new CancelandStopIntentHandler(),
-                          new HelloWorldIntentHandler(),
-                          new HelpIntentHandler(),
-                          new LaunchRequestHandler(),
-                          new SessionEndedRequestHandler())
-                  // Add your skill id below
-                  //.withSkillId("")
-                  .build();
-      }
-
-  }
+    public class AlexaServlet extends SkillServlet {
+    
+        public AlexaServlet() {
+            super(getSkill());
+        }
+    
+        private static Skill getSkill() {
+            return Skills.standard()
+                    .addRequestHandlers(
+                            new CancelandStopIntentHandler(),
+                            new HelloWorldIntentHandler(),
+                            new HelpIntentHandler(),
+                            new LaunchRequestHandler(),
+                            new SessionEndedRequestHandler(),
+                            new FallbackIntentHandler(),
+                            new ErrorHandler())
+                    .addExceptionHandler(new MyExceptionHandler())
+                    .addRequestInterceptors(
+                            new LogRequestInterceptor(),
+                            new LocalizationRequestInterceptor())
+                    .addResponseInterceptors(new LogResponseInterceptor())
+                    // Add your skill id below
+                    //.withSkillId("[unique-value-here]")
+                    .build();
+        }
+    
+    }
 ```
 
 It will receive all POST requests from Alexa and will send them to a specific handler, located in `handlers` folders, that can manage those requests.
