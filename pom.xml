@@ -17,7 +17,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <log4j.version>2.17.0</log4j.version>
+        <log4j.version>2.17.1</log4j.version>
         <alexa.ask.version>2.29.0</alexa.ask.version>
     </properties>
 
